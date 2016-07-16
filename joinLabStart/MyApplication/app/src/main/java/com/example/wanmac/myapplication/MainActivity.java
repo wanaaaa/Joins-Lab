@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
     private TextView resultText;
 
     @Override
@@ -25,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        button = (Button) findViewById(R.id.button);
         resultText = (TextView) findViewById(R.id.result);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
