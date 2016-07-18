@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -37,6 +38,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AmDataBaseHelper helper = AmDataBaseHelper.getINSTANCE(MainActivity.this);
+
+        DaDepartment employee1 = new DaDepartment("1", "companyOne", 233, 3);
+        DaDepartment employee2 = new DaDepartment("2", "companyTwo", 322, 4);
+        DaDepartment employee3 = new DaDepartment("3", "companyThree", 333, 5);
+//
+        helper.insertRowDepartment(employee1);
+        helper.insertRowDepartment(employee2);
+        helper.insertRowDepartment(employee3);
+
+        //String asdf = helper.checkDepartment();
+        //Log.d(TAG, asdf);
 
         TVssn = (TextView) findViewById(R.id.showSSN);
         TVfName = (TextView) findViewById(R.id.showFname);
@@ -105,13 +119,27 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        AmDataBaseHelper helper = AmDataBaseHelper.getINSTANCE(MainActivity.this);
+
+                        String ssn  = editSSN.getText().toString();
+                        String fname = editFName.getText().toString();
+                        String lname = editLName.getText().toString();
+                        String yBirth = editYbityh.getText().toString();
+                        String  city = editCity.getText().toString();
+
                         TVssn.setText("SSN: " + editSSN.getText());
                         TVfName.setText("First Name: " + editFName.getText());
                         TVlName.setText("Last Name: " + editLName.getText());
                         TVyBirth.setText("Year of Bityh: " + editYbityh.getText());
-                        TVcity.setText("First Name: " + editCity.getText());
+                        TVcity.setText("City: " + editCity.getText());
 
-                        Log.v(TAG, editSSN.getText().toString());
+                        DaEmployee employee = new DaEmployee(ssn, fname, lname,yBirth, city);
+                        helper.insertRowEmployee(employee);
+
+//                        String joinedName =  helper.getNameCompanyJoins();
+//
+//                        Log.v(TAG, "before joinName");
+//                        Log.v(TAG, joinedName);
 
                     }
                 })
