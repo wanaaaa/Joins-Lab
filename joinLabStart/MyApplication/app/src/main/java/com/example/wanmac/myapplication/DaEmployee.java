@@ -31,24 +31,24 @@ public class DaEmployee {
         return lname;
     }
 
-    public void setLname(String ssn) {
-        this.lname = ssn;
+    public void setLname(String str) {
+        this.lname = str;
     }
     /////////////////////////////////////////////
     public String getyBirth() {
         return yBirth;
     }
 
-    public void setyBirth(String ssn) {
-        this.yBirth = ssn;
+    public void setyBirth(String str) {
+        this.yBirth = str;
     }
     /////////////////////////////////////////////
     public String getCity() {
         return city;
     }
 
-    public void setCity(String ssn) {
-        this.ssn = ssn;
+    public void setCity(String str) {
+        this.ssn = str;
     }
     /////////////////////////////////////////////
 

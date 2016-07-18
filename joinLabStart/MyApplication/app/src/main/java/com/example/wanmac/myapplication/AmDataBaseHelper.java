@@ -39,7 +39,7 @@ public class AmDataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES_EMPLOYEE);
-        sqLiteDatabase.execSQL("create table department (ssn text, company text, salary integer, experience integer)");
+        sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES_DEPARTMENT);
     }
 
     @Override
@@ -76,6 +76,9 @@ public class AmDataBaseHelper extends SQLiteOpenHelper {
     public void insertRowEmployee(DaEmployee employee) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
+
+        //db.execSQL(SQL_CREATE_ENTRIES_EMPLOYEE);
+        //db.execSQL(SQL_DELETE_ENTRIES_EMPLOYEE);
         values.put(COL_SSN, employee.getSSN());
         values.put(COL_FNAME, employee.getFname());
         values.put(COL_LNAME, employee.getLname());
@@ -96,6 +99,7 @@ public class AmDataBaseHelper extends SQLiteOpenHelper {
 
     public String getNameCompanyJoins() {
         SQLiteDatabase dataBase = getReadableDatabase();
+
         String result = "";
         String query = "SELECT "+COL_LNAME+", "+COL_COMPANY+" FROM "+EMPLOYEE_TABLE_NAME+
                 " JOIN "+DEPARTMENT_TABLE_NAME+" ON "+EMPLOYEE_TABLE_NAME+"."+COL_SSN+

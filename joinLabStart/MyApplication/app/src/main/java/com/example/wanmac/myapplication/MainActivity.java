@@ -2,19 +2,15 @@ package com.example.wanmac.myapplication;
 
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
+                                departmentInputDialog();
                                 Toast.makeText(MainActivity.this, "you clicked OK",
                                         Toast.LENGTH_SHORT).show();
                             }
@@ -153,7 +150,62 @@ public class MainActivity extends AppCompatActivity {
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
-    }
+    }//End of ShowInputDialog
+
+    protected void departmentInputDialog() {
+
+        // get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.input_department, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setView(promptView);
+
+        final EditText editDSSN, editCompany, editSalary, editExperience;
+
+        editDSSN = (EditText) promptView.findViewById(R.id.editDepartSSN);
+        editCompany = (EditText) promptView.findViewById(R.id.editComany);
+        editSalary = (EditText) promptView.findViewById(R.id.editSalary);
+        editExperience = (EditText) promptView.findViewById(R.id.editExperience);
+
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        AmDataBaseHelper helper = AmDataBaseHelper.getINSTANCE(MainActivity.this);
+
+//                        String ssn  = editSSN.getText().toString();
+//                        String fname = editFName.getText().toString();
+//                        String lname = editLName.getText().toString();
+//                        String yBirth = editYbityh.getText().toString();
+//                        String  city = editCity.getText().toString();
+//
+//                        TVssn.setText("SSN: " + editSSN.getText());
+//                        TVfName.setText("First Name: " + editFName.getText());
+//                        TVlName.setText("Last Name: " + editLName.getText());
+//                        TVyBirth.setText("Year of Bityh: " + editYbityh.getText());
+//                        TVcity.setText("City: " + editCity.getText());
+//
+//                        DaEmployee employee = new DaEmployee(ssn, fname, lname,yBirth, city);
+//                        helper.insertRowEmployee(employee);
+
+//                        String joinedName =  helper.getNameCompanyJoins();
+//
+//                        Log.v(TAG, "before joinName");
+//                        Log.v(TAG, joinedName);
+
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }//departmentInputDialog
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
