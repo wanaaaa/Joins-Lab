@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
     private TextView TVssn, TVfName, TVlName, TVyBirth, TVcity, TVjoined;
+    private ListView joinedListView;
+    Button joinedButton;
     private static final String TAG = "asdf??";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        joinedListView = (ListView) findViewById(R.id.joinedListView);
 
         AmDataBaseHelper helper = AmDataBaseHelper.getINSTANCE(MainActivity.this);
 
@@ -54,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         TVyBirth = (TextView) findViewById(R.id.showYbirth);
         TVcity = (TextView) findViewById(R.id.showCity);
         TVjoined = (TextView) findViewById(R.id.showJoiedList) ;
+
+        joinedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
