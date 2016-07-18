@@ -20,7 +20,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView TVssn, TVfName, TVlName, TVyBirth, TVcity;
+    private TextView TVssn, TVfName, TVlName, TVyBirth, TVcity, TVjoined;
     private static final String TAG = "asdf??";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         TVlName = (TextView) findViewById(R.id.showLname);
         TVyBirth = (TextView) findViewById(R.id.showYbirth);
         TVcity = (TextView) findViewById(R.id.showCity);
+        TVjoined = (TextView) findViewById(R.id.showJoiedList) ;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -173,20 +174,19 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         AmDataBaseHelper helper = AmDataBaseHelper.getINSTANCE(MainActivity.this);
 
-//                        String ssn  = editSSN.getText().toString();
-//                        String fname = editFName.getText().toString();
-//                        String lname = editLName.getText().toString();
-//                        String yBirth = editYbityh.getText().toString();
-//                        String  city = editCity.getText().toString();
-//
+                        String dSSN  =editDSSN.getText().toString();
+                        String company = editCompany.getText().toString();
+                        int salary = Integer.parseInt(editSalary.getText().toString());
+                        int experience = Integer.parseInt(editExperience.getText().toString());
+
 //                        TVssn.setText("SSN: " + editSSN.getText());
 //                        TVfName.setText("First Name: " + editFName.getText());
 //                        TVlName.setText("Last Name: " + editLName.getText());
 //                        TVyBirth.setText("Year of Bityh: " + editYbityh.getText());
 //                        TVcity.setText("City: " + editCity.getText());
 //
-//                        DaEmployee employee = new DaEmployee(ssn, fname, lname,yBirth, city);
-//                        helper.insertRowEmployee(employee);
+                        DaDepartment department = new DaDepartment(dSSN, company,salary, experience);
+                        helper.insertRowDepartment(department);
 
 //                        String joinedName =  helper.getNameCompanyJoins();
 //
